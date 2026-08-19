@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew D'Iorio, Computational Biologist</title>
+<meta name="description" content="Computational biologist building reproducible pipelines for genomic and clinical data. PhD, McGill University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #16211f;
+    --ink-soft:   #4a5754;
+    --ink-faint:  #7c8783;
+    --paper:      #f7f6f1;
+    --paper-card: #fffefb;
+    --rule:       #e0ddd2;
+    --accent:     #1f6e6a;   /* muted petrol/teal, scientific accent */
+    --accent-dk:  #164f4c;
+    --tag-bg:     #edeee7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ---------- Header / hero ---------- */
+  header {
+    padding: 5.5rem 0 3rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.1rem;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(2.6rem, 7vw, 3.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .intro {
+    font-size: 1.16rem;
+    color: var(--ink-soft);
+    max-width: 40em;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    margin-top: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+  }
+  .contact-row a {
+    color: var(--accent-dk);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .contact-row a:hover { border-bottom-color: var(--accent); }
+  .contact-row span.label { color: var(--ink-faint); }
+  .contact-row span.sep { color: var(--ink-faint); }
+
+  /* ---------- Section scaffolding ---------- */
+  section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2rem;
+  }
+
+  /* ---------- Projects ---------- */
+  .item { margin-bottom: 2.6rem; }
+  .item:last-child { margin-bottom: 0; }
+  .item h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.15rem;
+  }
+  .item .role {
+    font-size: 0.92rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.7rem;
+  }
+  .item p { color: var(--ink-soft); margin-bottom: 0.7rem; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    background: var(--tag-bg);
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+  }
+  .repo-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent-dk);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.15s ease;
+  }
+  .repo-link:hover { border-bottom-color: var(--accent); }
+  .repo-link::before { content: "→ "; color: var(--accent); }
+
+  /* ---------- Publications ---------- */
+  .pub {
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.1rem;
+  }
+  .pub:first-of-type { border-top: none; }
+  .pub .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    padding-top: 0.15rem;
+  }
+  .pub .cite { font-size: 0.96rem; color: var(--ink-soft); }
+  .pub .cite .title { color: var(--ink); font-weight: 500; }
+  .pub .venue { font-style: italic; }
+  .pub .links {
+    margin-top: 0.35rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+  }
+  .pub .links a {
+    color: var(--accent-dk);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pub .links a:hover { border-bottom-color: var(--accent); }
+
+  /* ---------- Skills ---------- */
+  .skill-group { margin-bottom: 1.4rem; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group .k {
+    font-weight: 600;
+    font-size: 0.96rem;
+    color: var(--ink);
+  }
+  .skill-group .v { color: var(--ink-soft); font-size: 0.96rem; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 3rem 0 4.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+  }
+  footer a { color: var(--accent-dk); text-decoration: none; }
+  footer a:hover { border-bottom: 1px solid var(--accent); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    header { padding: 3.5rem 0 2.5rem; }
+    .pub { grid-template-columns: 1fr; gap: 0.3rem; }
+    .pub .year { padding-top: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  /* focus visibility */
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Computational Biologist</div>
+    <h1>Matthew D'Iorio</h1>
+    <p class="intro">
+      I'm a computational biologist who recently completed a PhD in Quantitative Life
+      Sciences at McGill University. I build reproducible, end-to-end pipelines for genomic
+      and clinical data, taking analyses from raw sequencing through to interpretable results,
+      with an emphasis on statistical rigour and well-documented, reusable code. I'm currently
+      looking for bioinformatics and computational biology roles in the Toronto area.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:mattdiorio5@gmail.com">mattdiorio5@gmail.com</a>
+      <span class="sep">·</span>
+      <a href="https://github.com/mdiorio371" target="_blank" rel="noopener">github.com/mdiorio371</a>
+      <span class="sep">·</span>
+      <a href="https://www.linkedin.com/in/matthew-diorio-b01a339a" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="section-label">Selected work</div>
+
+    <div class="item">
+      <h3>Structural variation in bacterial genomes</h3>
+      <div class="role">PhD research · Ken Dewar Lab, McGill University</div>
+      <p>
+        Built a documented, modular pipeline that processes thousands of complete bacterial
+        genomes, detects structural variants across samples, and integrates that variation
+        into phylogenetic and population inference from SNP-based typing. Two thesis chapters
+        are R packages designed for structured, shareable, end-to-end analysis.
+      </p>
+      <div class="tags">
+        <span class="tag">R</span><span class="tag">Python</span><span class="tag">Bash</span>
+        <span class="tag">SLURM</span><span class="tag">structural variants</span>
+        <span class="tag">phylogenetics</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>Human RNA-seq analysis, joint capsule tissue</h3>
+      <div class="role">Lead computational analyst · manuscript in preparation</div>
+      <p>
+        Owned the full computational analysis end to end, from raw sequencing files through to
+        the figures and statistics in the manuscript. Built the pipeline from scratch
+        (HISAT2, featureCounts, DESeq2), set documented QC thresholds, and packaged everything
+        into reproducible notebooks that regenerate every result. One case group had only two
+        samples, so I designed three complementary analyses and reported the robust
+        intersection rather than lean on a single fragile model.
+      </p>
+      <div class="tags">
+        <span class="tag">R</span><span class="tag">DESeq2</span><span class="tag">RNA-seq</span>
+        <span class="tag">differential expression</span><span class="tag">reproducibility</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <h3>Containerized bioinformatics environments</h3>
+      <div class="role">Contract · computational biology</div>
+      <p>
+        Design and validate containerized analysis environments and evaluation tasks across
+        cancer genomics, microbial genetics, and epigenetics. Write original Python solutions
+        to non-standard problems with self-authored test cases under version control, with
+        careful attention to reproducibility, data provenance, and behaviour in constrained
+        runtime environments.
+      </p>
+      <div class="tags">
+        <span class="tag">Docker</span><span class="tag">Python</span><span class="tag">Git</span>
+        <span class="tag">reproducibility</span><span class="tag">cancer genomics</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="section-label">Publications &amp; preprints</div>
+
+    <div class="pub">
+      <div class="year">2023</div>
+      <div class="cite">
+        <span class="title">Replication-associated inversions are the dominant form of bacterial chromosome structural variation.</span>
+        D'Iorio &amp; Dewar. <span class="venue">Life Science Alliance</span> 6: e202201434.
+        <div class="links">
+          <a href="https://github.com/mdiorio371/RASR" target="_blank" rel="noopener">code · RASR</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2023</div>
+      <div class="cite">
+        <span class="title">Ordered Memory Baselines.</span>
+        Borisov, D'Iorio &amp; Hyacinthe. NeurIPS 2019 Reproducibility Challenge.
+        <span class="venue">arXiv:2302.06451</span>.
+        <div class="links">
+          <a href="https://arxiv.org/abs/2302.06451" target="_blank" rel="noopener">arXiv</a>
+          <a href="https://github.com/mdiorio371/Ordered_Memory" target="_blank" rel="noopener">code</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2021</div>
+      <div class="cite">
+        Abed et al. (incl. <span class="title">D'Iorio</span>).
+        Complete genome sequences of <em>Klebsiella michiganensis</em> and
+        <em>Citrobacter farmeri</em>, KPC-2 producers isolated from a single patient.
+        <span class="venue">Antibiotics</span> 10(11):1408.
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">2020</div>
+      <div class="cite">
+        Parker, <span class="title">D'Iorio</span>, Floras &amp; Toal.
+        Comparison of short-acting versus extended-release nifedipine in stable coronary
+        artery disease. <span class="venue">Scientific Reports</span> 10(1).
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="year">forthcoming</div>
+      <div class="cite">
+        <span class="title">Systematic mapping and characterization of structural variation in bacterial genomes;</span>
+        and structural variation in bacterial phylogenetics and systematics. D'Iorio &amp; Dewar (PhD thesis chapters).
+        <div class="links">
+          <a href="https://github.com/mdiorio371/SVMC" target="_blank" rel="noopener">code · SVMC</a>
+          <a href="https://github.com/mdiorio371/SV_phylo" target="_blank" rel="noopener">code · SV_phylo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Skills</div>
+
+    <div class="skill-group">
+      <span class="k">Languages &amp; systems.</span>
+      <span class="v">R, Python, Bash; Unix/Linux; SLURM and high-performance computing.</span>
+    </div>
+    <div class="skill-group">
+      <span class="k">Reproducible research.</span>
+      <span class="v">Docker and containerized environments, Git version control, Snakemake and Nextflow, documented reproducible notebooks and data provenance.</span>
+    </div>
+    <div class="skill-group">
+      <span class="k">Genomics &amp; NGS.</span>
+      <span class="v">End-to-end pipeline development, alignment, quality control, variant calling, differential expression, structural variant detection, RNA-seq, ChIP-seq, phylogenetics.</span>
+    </div>
+    <div class="skill-group">
+      <span class="k">Statistics &amp; machine learning.</span>
+      <span class="v">Regression and penalized methods, dimension reduction, multiple-testing correction, random forests, SVMs; analysis under small-sample constraints.</span>
+    </div>
+    <div class="skill-group">
+      <span class="k">Tools.</span>
+      <span class="v">DESeq2, HISAT2, featureCounts, Bioconductor (Biostrings, GenomicRanges); NCBI and Ensembl resources.</span>
+    </div>
+  </section>
+
+  <footer>
+    Toronto, Canada ·
+    <a href="mailto:mattdiorio5@gmail.com">mattdiorio5@gmail.com</a> ·
+    <a href="https://github.com/mdiorio371" target="_blank" rel="noopener">github.com/mdiorio371</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
